@@ -72,21 +72,10 @@ const Navbar =()=>{
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                {/* { currentUser?
-                (
-                <div>
-                  <MenuItem onClick={()=>navigate("/login")}>Login</MenuItem>
-                  <MenuItem onClick={()=>navigate("/register")}>Register</MenuItem>
-                </div>)
-              :(
-                <div>
-                <MenuItem onClick={()=>navigate("/profil")}>Profil</MenuItem>
-                <MenuItem onClick={()=>navigate("/newblog")} >New</MenuItem>
-                <MenuItem  onClick={handleLogout}>Logout</MenuItem> */}
                 { currentUser?
                 (
                 <div>
-                <MenuItem onClick={()=>navigate("/profil")}>Profil</MenuItem>
+                <MenuItem onClick={()=>navigate("/profile")}>Profil</MenuItem>
                 <MenuItem onClick={()=>navigate("/newblog")} >New</MenuItem>
                 <MenuItem  onClick={handleLogout}>Logout</MenuItem>
                 </div>)
