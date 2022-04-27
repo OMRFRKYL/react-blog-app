@@ -2,7 +2,7 @@ import { Avatar } from '@mui/material'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import blok from "../assets/blok.png"
-import {createUser} from '../helpers/firebase';
+import {createUser, signUpProvider} from '../helpers/firebase';
 
 const Register = () => {
   const [email, setEmail] = useState();
@@ -13,6 +13,9 @@ const Register = () => {
     e.preventDefault();
     createUser(email,password,navigate)
   };
+  const handleProviderLogin = ()=>{
+    signUpProvider(navigate)
+  }
  
   return (
     <div className='d-flex justify-content-center' >
@@ -62,7 +65,7 @@ const Register = () => {
 
        />
       </form>
-      <button className='btn btn-primary form-control'>Continue with Google</button>
+      <button className='btn btn-primary form-control' onClick={handleProviderLogin}>Continue with Google</button>
      
     </div>
   </div>

@@ -2,7 +2,7 @@ import { Avatar } from '@mui/material'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import blok from "../assets/blok.png"
-import { signIn } from '../helpers/firebase'
+import { signIn, signUpProvider } from '../helpers/firebase'
 
 
 
@@ -14,6 +14,9 @@ const Login = () => {
   const handleSubmit =(e)=>{
     e.preventDefault();
     signIn(email,password,navigate)
+  }
+  const handleProviderLogin = ()=>{
+    signUpProvider(navigate)
   }
  
   return (
@@ -63,7 +66,7 @@ const Login = () => {
         value="Login"
        />
       </form>
-      <button className='btn btn-primary form-control'>Continue with Google</button>
+      <button className='btn btn-primary form-control' onClick={handleProviderLogin}>Continue with Google</button>
      
     </div>
   </div>

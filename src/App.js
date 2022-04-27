@@ -1,14 +1,15 @@
 
 import AppRouter from "./app-router/AppRouter"
 import './App.css';
-import Navbar from "./components/Navbar"
+import AuthContextProvider from "./contexts/AuthContext";
 
 
 function App() {
   return (
 <div>
-    <Navbar/>
-    <AppRouter/>
+    <AuthContextProvider>
+      <AppRouter/>
+    </AuthContextProvider>
 </div>
  
   );

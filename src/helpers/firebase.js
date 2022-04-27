@@ -1,5 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword,
+    getAuth,
+    GoogleAuthProvider,
+    onAuthStateChanged, 
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    signOut } from "firebase/auth";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -45,5 +51,29 @@ alert(err.message)
 
 export const logOut=()=>{
   signOut(auth)
-  alert("çıkış yapıldı.")
+  alert("çıkış yapıldı")
+}
+
+export const userObserver = (setCurrentUser)=>{
+  onAuthStateChanged(auth, (currentUser) => {
+    if (currentUser) {
+      setCurrentUser(currentUser)
+    } else {
+      setCurrentUser(false)
+    }
+  });
+  
+}
+export const signUpProvider = (navigate)=>{
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(auth, provider)
+  .then((result) => {
+    navigate("/")
+    console.log(result)
+   
+  }).catch((error) => {
+    console.log(error);
+   
+  });
+
 }

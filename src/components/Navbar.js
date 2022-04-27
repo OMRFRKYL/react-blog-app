@@ -10,9 +10,10 @@ import Menu from '@mui/material/Menu';
 import cw from "../assets/cw.jpeg"
 import { Link, useNavigate } from 'react-router-dom';
 import { logOut } from '../helpers/firebase';
+import {AuthContext} from "../contexts/AuthContext";
+import {useContext} from "react";
 
 const Navbar =()=>{
-  const currentUser = false
 
   // const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -29,10 +30,11 @@ const Navbar =()=>{
 
   const handleLogout=()=>{
     logOut();
-    navigate("/");
+    navigate("/login");
 
   }
-  
+ 
+ const {currentUser}= useContext(AuthContext) ;
   return (
     <Box sx={{ flexGrow: 1 }}>
     
@@ -70,7 +72,7 @@ const Navbar =()=>{
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                { currentUser?
+                {/* { currentUser?
                 (
                 <div>
                   <MenuItem onClick={()=>navigate("/login")}>Login</MenuItem>
@@ -80,7 +82,18 @@ const Navbar =()=>{
                 <div>
                 <MenuItem onClick={()=>navigate("/profil")}>Profil</MenuItem>
                 <MenuItem onClick={()=>navigate("/newblog")} >New</MenuItem>
+                <MenuItem  onClick={handleLogout}>Logout</MenuItem> */}
+                { currentUser?
+                (
+                <div>
+                <MenuItem onClick={()=>navigate("/profil")}>Profil</MenuItem>
+                <MenuItem onClick={()=>navigate("/newblog")} >New</MenuItem>
                 <MenuItem  onClick={handleLogout}>Logout</MenuItem>
+                </div>)
+              :(
+                <div>
+                  <MenuItem onClick={()=>navigate("/login")}>Login</MenuItem>
+                  <MenuItem onClick={()=>navigate("/register")}>Register</MenuItem>
                 </div> )}
               </Menu>
             </div>
