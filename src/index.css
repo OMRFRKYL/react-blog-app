@@ -113,7 +113,8 @@ body {
 }
 
 .form-control {
-  width: 90%;
+  border: 5px red solid;
+  width: 25px;
   margin: 20px;
 }
 
@@ -127,3 +128,26 @@ body {
   margin-left: 1.5rem;
   cursor: pointer;
 }
+
+.bg{
+  background-image: url("https://picsum.photos/800/800");
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+
+.avatar{
+  display: block;
+  position: relative;
+  margin: auto;
+  border: 1.5px solid rgb(102, 202, 206);
+  background-color: white;
+}
+
+.a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: tomato;
+}
+

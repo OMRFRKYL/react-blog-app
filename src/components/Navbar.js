@@ -8,9 +8,11 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import cw from "../assets/cw.jpeg"
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { logOut } from '../helpers/firebase';
 
 const Navbar =()=>{
+  const currentUser = false
 
   // const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -25,23 +27,22 @@ const Navbar =()=>{
     setAnchorEl(null);
   };
 
-  const handleLogin =() => {
-    navigate("/login");
-  };
+  const handleLogout=()=>{
+    logOut();
+    navigate("/");
 
-  const handleRegister=()=>{
-    navigate("/register");
-  };
-
-
+  }
+  
   return (
     <Box sx={{ flexGrow: 1 }}>
     
       <AppBar position="static">
         <Toolbar>
+          <Link to={"/"}>
        <img src={cw} alt="" style={{width:"25px"}}/>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          ──── <span>{"<OMRFRKYL/>"}</span> Blog ────
+         </Link>
+          <Typography variant="h5" component="div" sx={{ flexGrow: 1 }} className="a" >
+            ──── <span>{"<OMRFRKYL/>"}</span> Blog ────
           </Typography>
             <div>
               <IconButton
@@ -69,8 +70,18 @@ const Navbar =()=>{
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleLogin}>Login</MenuItem>
-                <MenuItem onClick={handleRegister}>Register</MenuItem>
+                { currentUser?
+                (
+                <div>
+                  <MenuItem onClick={()=>navigate("/login")}>Login</MenuItem>
+                  <MenuItem onClick={()=>navigate("/register")}>Register</MenuItem>
+                </div>)
+              :(
+                <div>
+                <MenuItem onClick={()=>navigate("/profil")}>Profil</MenuItem>
+                <MenuItem onClick={()=>navigate("/newblog")} >New</MenuItem>
+                <MenuItem  onClick={handleLogout}>Logout</MenuItem>
+                </div> )}
               </Menu>
             </div>
         </Toolbar>
