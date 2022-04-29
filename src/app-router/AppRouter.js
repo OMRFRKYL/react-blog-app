@@ -13,10 +13,12 @@ import Navbar from '../components/Navbar';
 
 
 
+
 const AppRouter = () => {
   return (
   <BrowserRouter>
   <Navbar/>
+
     <Routes>
         <Route path='/' element={<Dashboard/>} />
         <Route path='/about' element={<About/>} />

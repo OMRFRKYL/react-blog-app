@@ -151,3 +151,21 @@ body {
   color: tomato;
 }
 
+.blogform{
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.blogform-field{
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 15px;
+}
+
+.blogformbtn{
+  width: 5px;
+}
