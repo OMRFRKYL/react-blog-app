@@ -19,11 +19,13 @@ const firebaseConfig = {
   };
   
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const firebase = initializeApp(firebaseConfig);
+
+export default firebase
 
 
 // Initialize Firebase Authentication and get a reference to the service
-const auth = getAuth(app);
+const auth = getAuth(firebase);
 
 export const createUser= async (email, password,navigate)=>{
 

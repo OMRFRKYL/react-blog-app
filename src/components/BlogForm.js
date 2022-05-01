@@ -1,8 +1,17 @@
 import React from 'react'
+import BlogCard from "../components/BlogCard"
 
-const BlogForm = () => {
+const BlogForm = ({info}) => {
   return (
-    <div>BlogForm</div>
+    <div>
+      {
+        info?.map((item,index)=>{
+          return(
+            <BlogCard item={item} key={index} />
+          )
+        })
+      }
+    </div>
   )
 }
 
