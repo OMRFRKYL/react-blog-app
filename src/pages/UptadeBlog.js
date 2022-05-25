@@ -44,19 +44,23 @@ const UptadeBlog = () => {
       <div className='blogform-field'>
       <TextField 
       name="title"
-      value={getInfo?.title}
+      defaultValue={getInfo?.title}
        onChange={(e)=>setNewBlog({...newBlog,title:e.target.value})}
-        id="outlined-basic"
+       multiline
+      //   id="outlined-basic"
         label="Title"
-       variant="outlined" />
+      //  variant="outlined" 
+      id="outlined-multiline-static"
+       />
 
       <TextField 
       defaultValue={getInfo?.imageUrl}
         name="imageUrl"
-        id="outlined-basic" 
+        // id="outlined-basic" 
+        id="outlined-multiline-static"
         label="Image Url"
         onChange={(e)=>setNewBlog({...newBlog,imageUrl:e.target.value})}
-       variant="outlined" />
+        multiline />
 
       <TextField
       defaultValue={getInfo?.content}
@@ -68,7 +72,7 @@ const UptadeBlog = () => {
        rows={8}
         />
       </div>
-      <button className='btn btn-primary' onClick={uptadeHandler}>SUBMİT</button>
+      <button className='btn btn-primary mt-5' onClick={uptadeHandler}>SUBMİT</button>
       </form>
     </div>
     
