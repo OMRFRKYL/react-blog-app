@@ -1,32 +1,38 @@
 import { Avatar, TextField,Box} from '@mui/material';
 import blok from "../assets/blok.png";
-import { useState} from "react";
+import { useState,useContext} from "react";
 
 import {useNavigate, useParams } from 'react-router-dom';
 import { useFetch,editBlog } from '../helpers/functions';
+import {AuthContext} from '../contexts/AuthContext';
 
 
 
 const UptadeBlog = () => {
   const {info}= useFetch()
-  
+ 
   const navigate = useNavigate();
   const {id} = useParams()
   const getUserInfo =info?.filter((user)=> user.id === id)
+  const {currentUser} = useContext(AuthContext)
+
   
-  const getInfo= getUserInfo ? getUserInfo[0] : { title: "", content: "", imageUrl: "" };
+  const getInfo= getUserInfo ? getUserInfo[0] : { title: "", content: "", imageUrl: "" ,date: ""};
   const [newBlog ,setNewBlog] =useState({
-      userEmail:getInfo.user,
+      user:currentUser?.email,
       title:getInfo.title,
       imageUrl:getInfo.imageUrl,
       content:getInfo.content,
       date:getInfo.date,
       id:id
   });
-  console.log(getInfo);
-  const uptadeHandler=()=>{
+  console.log(newBlog)
+  
+  const uptadeHandler=(e)=>{
+    e.preventDefault()
     editBlog(newBlog)
     navigate("/")
+
   }
   
   return (
@@ -44,19 +50,23 @@ const UptadeBlog = () => {
       <div className='blogform-field'>
       <TextField 
       name="title"
-      value={getInfo?.title}
+      defaultValue={getInfo?.title}
        onChange={(e)=>setNewBlog({...newBlog,title:e.target.value})}
-        id="outlined-basic"
+       multiline
+      //   id="outlined-basic"
         label="Title"
-       variant="outlined" />
+      //  variant="outlined" 
+      id="outlined-multiline-static"
+       />
 
       <TextField 
       defaultValue={getInfo?.imageUrl}
         name="imageUrl"
-        id="outlined-basic" 
+        // id="outlined-basic" 
+        id="outlined-multiline-static"
         label="Image Url"
         onChange={(e)=>setNewBlog({...newBlog,imageUrl:e.target.value})}
-       variant="outlined" />
+        multiline />
 
       <TextField
       defaultValue={getInfo?.content}
@@ -68,7 +78,7 @@ const UptadeBlog = () => {
        rows={8}
         />
       </div>
-      <button className='btn btn-primary' onClick={uptadeHandler}>SUBMİT</button>
+      <button className='btn btn-primary mt-5' onClick={uptadeHandler}>SUBMİT</button>
       </form>
     </div>
     

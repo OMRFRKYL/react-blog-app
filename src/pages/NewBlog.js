@@ -30,6 +30,8 @@ const NewBlog = () => {
       date: today,
     });
   };
+ 
+
 
   
   const handleFormSubmit=(e)=>{
